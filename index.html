@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Protégé - SERNIE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 380px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 22px;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="password"]:focus {
+            border-color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .content-box {
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: 15px;
+            color: #555;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Zone de Connexion -->
+        <div id="login-section">
+            <h2>Accès Sécurisé</h2>
+            <p>Veuillez entrer votre mot de passe</p>
+            <input type="password" id="password-input" placeholder="Mot de passe">
+            <button onclick="checkPassword()">Valider</button>
+            <div id="error-msg" class="error"></div>
+        </div>
+
+        <!-- Zone de Contenu Protégé (Cachée par défaut) -->
+        <div id="content-section" class="hidden">
+            <div class="content-box">SERNIE 2026 - 2027</div>
+            <div class="footer-text">GRACIA @ 2026</div>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passInput = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            const correctPass = "SKivu"; // Le code d'accès défini
+
+            if (passInput === correctPass) {
+                // Masquer la section de connexion et afficher le contenu
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('content-section').classList.remove('hidden');
+            } else {
+                errorMsg.textContent = "Mot de passe incorrect. Réessayez.";
+            }
+        }
+
+        // Permet de valider en appuyant sur la touche "Entrée" du clavier
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>
